@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import Modal from './Modal';
-import doNotInteractCriteria from './doNotInteractCriteria.md';
+import { useState, useEffect } from 'react';
+import Modal from './Modal';  // Ensure this is correct
+import doNotInteractCriteria from './doNotInteractCriteria.md'; // Ensure this path is correct
 import './App.css';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
   const [criteria, setCriteria] = useState('');
 
-  // Load the criteria from the markdown file
-  import('./doNotInteractCriteria.md').then((module) => setCriteria(module.default));
+  useEffect(() => {
+    setCriteria(doNotInteractCriteria); // Use the imported Markdown content
+  }, []);
 
   const handleEmailButtonClick = () => {
     setShowModal(true);
